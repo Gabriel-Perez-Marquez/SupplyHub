@@ -5,6 +5,7 @@ import com.salesianostriana.dam.SupplyHub.dto.AddProductoToPedidoRequest;
 import com.salesianostriana.dam.SupplyHub.dto.CreatePedidoRequest;
 import com.salesianostriana.dam.SupplyHub.dto.PedidoDto;
 import com.salesianostriana.dam.SupplyHub.service.PedidoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class PedidoController {
     private final PedidoService pedidoService;
 
     @PostMapping("")
-    public ResponseEntity<PedidoDto> crearPedido (CreatePedidoRequest dto){
+    public ResponseEntity<PedidoDto> crearPedido (@Valid @RequestBody CreatePedidoRequest dto){
         return ResponseEntity.ok(PedidoDto.of(pedidoService.crearPedido(dto)));
     }
 
